@@ -25420,10 +25420,13 @@
 
 	    var that = this;
 	    this.setState({ isLoading: true });
-	    openWeatherMap.getTemp(location).then(function (temp) {
+	    openWeatherMap.getTemp(location).then(function (data) {
 	      that.setState({
 	        location: location,
-	        temp: temp,
+	        temp: data.main.temp,
+	        main: data.weather[0].main,
+	        description: data.weather[0].description,
+	        icon: data.weather[0].icon,
 	        isLoading: false
 	      });
 	    }, function (err) {
@@ -25601,16 +25604,33 @@
 
 	var React = __webpack_require__(7);
 
+	var _URL = 'http://openweathermap.org/img/w/';
+
 	var WeatherResult = function WeatherResult(_ref) {
 	  var message = _ref.message;
 
+
+	  var _img = '' + _URL + message.icon + '.png';
+
 	  return React.createElement(
-	    'h4',
+	    'div',
 	    null,
-	    'It\'s ',
-	    message.temp,
-	    ' °C in ',
-	    message.location
+	    React.createElement(
+	      'h4',
+	      null,
+	      'It\'s ',
+	      message.temp,
+	      ' °C in ',
+	      message.location
+	    ),
+	    React.createElement('br', null),
+	    React.createElement('img', { alt: message.main, src: _img }),
+	    React.createElement(
+	      'h4',
+	      null,
+	      ' ',
+	      message.description
+	    )
 	  );
 	};
 
@@ -25639,7 +25659,7 @@
 	      if (res.data.cod && res.data.message) {
 	        throw new Error(res.data.message);
 	      } else {
-	        return res.data.main.temp;
+	        return res.data;
 	      }
 	    }, function (res) {
 	      throw new Error(res.data.message);
