@@ -5,7 +5,7 @@ var About = (props) => {
     <div className="container center">
       <br/>
       <h3>About</h3>
-      <p>Welcome to the About page!</p>
+      <p>Welcome to the About page.</p>
     </div>
   );
 };

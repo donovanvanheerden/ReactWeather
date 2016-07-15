@@ -26943,7 +26943,7 @@
 	    React.createElement(
 	      "p",
 	      null,
-	      "Welcome to the About page!"
+	      "Welcome to the About page."
 	    )
 	  );
 	};
@@ -26971,7 +26971,7 @@
 	    React.createElement(
 	      "p",
 	      null,
-	      "Welcome to the Examples page!"
+	      "Welcome to the Examples page."
 	    )
 	  );
 	};
