@@ -25421,9 +25421,12 @@
 	    var that = this;
 	    this.setState({ isLoading: true });
 	    openWeatherMap.getTemp(location).then(function (data) {
+	      //debugger;
 	      that.setState({
 	        location: location,
 	        temp: data.main.temp,
+	        city: data.name,
+	        country: data.sys.country,
 	        main: data.weather[0].main,
 	        description: data.weather[0].description,
 	        icon: data.weather[0].icon,
@@ -25621,7 +25624,9 @@
 	      'It\'s ',
 	      message.temp,
 	      ' °C in ',
-	      message.location
+	      message.city,
+	      ', ',
+	      message.country
 	    ),
 	    React.createElement('br', null),
 	    React.createElement('img', { alt: message.main, src: _img }),
@@ -25640,7 +25645,7 @@
 /* 232 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var axios = __webpack_require__(233);
 
@@ -25653,11 +25658,11 @@
 	    // Web safe location string
 	    var encodedLocation = encodeURIComponent(location);
 
-	    var requestUrl = _URL + "&q=" + encodedLocation;
+	    var requestUrl = _URL + '&q=' + encodedLocation;
 
 	    return axios.get(requestUrl).then(function (res) {
 	      if (res.data.cod && res.data.message) {
-	        throw new Error(res.data.message);
+	        throw new Error('City not found.');
 	      } else {
 	        return res.data;
 	      }

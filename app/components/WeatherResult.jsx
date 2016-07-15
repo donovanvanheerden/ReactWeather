@@ -8,7 +8,7 @@ var WeatherResult = ({message}) => {
 
   return (
       <div>
-        <h4>It's {message.temp} °C in {message.location}</h4>
+        <h4>It's {message.temp} °C in {message.city}, {message.country}</h4>
         <br />
         <img alt={message.main} src={_img} />
         <h4> {message.description}</h4>

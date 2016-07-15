@@ -14,9 +14,12 @@ var Weather = React.createClass({
     var that = this;
     this.setState({ isLoading: true });
     openWeatherMap.getTemp(location).then(function (data) {
+      //debugger;
       that.setState({
         location: location,
         temp: data.main.temp,
+        city: data.name,
+        country: data.sys.country,
         main: data.weather[0].main,
         description: data.weather[0].description,
         icon: data.weather[0].icon,
