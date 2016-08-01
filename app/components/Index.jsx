@@ -1,37 +1,12 @@
 var React = require('react');
-var WeatherForm = require('WeatherForm');
-var WeatherResult = require('WeatherResult');
-var openWeatherMap = require('openWeatherMap');
 
-var Weather = React.createClass({
+var Index = React.createClass({
   getInitialState: function () {
     return {
       isLoading: false
     }
   },
   handleSearch: function(location) {
-
-    var that = this;
-    this.setState({ isLoading: true });
-    openWeatherMap.getTemp(location).then(function (data) {
-      //debugger;
-      that.setState({
-        location: location,
-        temp: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        main: data.weather[0].main,
-        description: data.weather[0].description,
-        icon: data.weather[0].icon,
-        isLoading: false
-      });
-
-    }, function (err) {
-      that.setState({
-        isLoading: false
-      });
-      alert(err);
-    });
   },
   render: function () {
     var message = this.state;
@@ -83,8 +58,6 @@ var Weather = React.createClass({
                 </div>
               </div>
           </div>);
-      } else if (message.temp && message.location) {
-        return <WeatherResult message={message} />;
       }
     }
 
@@ -92,10 +65,8 @@ var Weather = React.createClass({
       <div className="container">
         <div className="row center">
           <br/>
-          <h3>Get Weather</h3>
+          <h3>Welcome to Purple Gecko</h3>
           <br/><br/>
-          <WeatherForm onSearch={this.handleSearch}/>
-          <br/>
           {renderMessage()}
         </div>
       </div>
@@ -103,4 +74,4 @@ var Weather = React.createClass({
   }
 });
 
-module.exports = Weather;
+module.exports = Index;

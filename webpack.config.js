@@ -15,9 +15,6 @@ module.exports = {
       '$': 'jquery',
       'jQuery': 'jquery'
     }),
-    // new CopyWebpackPlugin([
-    //   {from:'./fonts', to: './public/fonts'}
-    // ])
   ],
   output: {
     path: __dirname,
@@ -28,12 +25,9 @@ module.exports = {
     alias: {
       Main: 'app/components/Main.jsx',
       Nav: 'app/components/Navigation.jsx',
-      Weather: 'app/components/Weather.jsx',
+      Index: 'app/components/Index.jsx',
       About: 'app/components/About.jsx',
-      Examples: 'app/components/Examples.jsx',
-      WeatherForm: 'app/components/WeatherForm.jsx',
-      WeatherResult: 'app/components/WeatherResult.jsx',
-      openWeatherMap: 'app/api/openWeatherMap.jsx'
+      HomeController: 'app/api/HomeController.jsx'
     },
     extensions: ['', '.js', '.jsx']
   },
