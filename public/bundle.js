@@ -102,7 +102,7 @@
 	var Route = _require.Route;
 	var Router = _require.Router;
 	var IndexRoute = _require.IndexRoute;
-	var hashHistory = _require.hashHistory;
+	var browserHistory = _require.browserHistory;
 
 	var Main = __webpack_require__(227);
 	var Weather = __webpack_require__(229);
@@ -114,13 +114,13 @@
 
 	ReactDOM.render(React.createElement(
 	  Router,
-	  { history: hashHistory },
+	  { history: browserHistory },
 	  React.createElement(
 	    Route,
 	    { path: '/', component: Main },
+	    React.createElement(IndexRoute, { component: Weather }),
 	    React.createElement(Route, { path: 'about', component: About }),
-	    React.createElement(Route, { path: 'examples', component: Examples }),
-	    React.createElement(IndexRoute, { component: Weather })
+	    React.createElement(Route, { path: 'examples', component: Examples })
 	  )
 	), document.getElementById('app'));
 
