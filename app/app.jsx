@@ -6,9 +6,6 @@ var Weather = require('Weather');
 var About = require('About')
 var Examples = require('Examples')
 
-// Load Materialize
-require('style!css!materialize-css/dist/css/materialize.min.css');
-
 ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={Main} >

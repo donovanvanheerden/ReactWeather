@@ -10,94 +10,37 @@ var Weather = React.createClass({
     }
   },
   handleSearch: function(location) {
-
     var that = this;
+
     this.setState({ isLoading: true });
+
     openWeatherMap.getTemp(location).then(function (data) {
-      //debugger;
       that.setState({
         location: location,
-        temp: data.main.temp,
-        city: data.name,
-        country: data.sys.country,
-        main: data.weather[0].main,
-        description: data.weather[0].description,
-        icon: data.weather[0].icon,
+        temp: data,
         isLoading: false
       });
-
     }, function (err) {
-      that.setState({
-        isLoading: false
-      });
+      that.setState({ isLoading: false });
       alert(err);
     });
   },
   render: function () {
-    var message = this.state;
+    var {location, temp, isLoading} = this.state;
 
     function renderMessage () {
-      if (message.isLoading) {
-        return (
-          <div className="container">
-            <br/>
-              <div className="preloader-wrapper small active">
-                <div className="spinner-layer spinner-blue">
-                  <div className="circle-clipper left">
-                    <div className="circle"></div>
-                  </div><div className="gap-patch">
-                    <div className="circle"></div>
-                  </div><div className="circle-clipper right">
-                    <div className="circle"></div>
-                  </div>
-                </div>
-
-                <div className="spinner-layer spinner-red">
-                  <div className="circle-clipper left">
-                    <div className="circle"></div>
-                  </div><div className="gap-patch">
-                    <div className="circle"></div>
-                  </div><div className="circle-clipper right">
-                    <div className="circle"></div>
-                  </div>
-                </div>
-
-                <div className="spinner-layer spinner-yellow">
-                  <div className="circle-clipper left">
-                    <div className="circle"></div>
-                  </div><div className="gap-patch">
-                    <div className="circle"></div>
-                  </div><div className="circle-clipper right">
-                    <div className="circle"></div>
-                  </div>
-                </div>
-
-                <div className="spinner-layer spinner-green">
-                  <div className="circle-clipper left">
-                    <div className="circle"></div>
-                  </div><div className="gap-patch">
-                    <div className="circle"></div>
-                  </div><div className="circle-clipper right">
-                    <div className="circle"></div>
-                  </div>
-                </div>
-              </div>
-          </div>);
-      } else if (message.temp && message.location) {
-        return <WeatherResult message={message} />;
+      if (isLoading) {
+        return <h3>Fetching weather...</h3>;
+      } else if (temp && location) {
+        return <WeatherResult temp={temp} location={location} />;
       }
     }
 
     return (
-      <div className="container">
-        <div className="row center">
-          <br/>
-          <h3>Get Weather</h3>
-          <br/><br/>
-          <WeatherForm onSearch={this.handleSearch}/>
-          <br/>
-          {renderMessage()}
-        </div>
+      <div>
+        <h3>Weather Component</h3>
+        <WeatherForm onSearch={this.handleSearch}/>
+        {renderMessage()}
       </div>
     );
   }
