@@ -10,10 +10,10 @@ module.exports = {
       Main: 'app/components/Main.jsx',
       Nav: 'app/components/Navigation.jsx',
       Weather: 'app/components/Weather.jsx',
-      About: 'app/components/About.jsx',
       Examples: 'app/components/Examples.jsx',
-      WeatherForm: 'app/components/WeatherForm.jsx',
       WeatherResult: 'app/components/WeatherResult.jsx',
+      WeatherForm: 'app/components/WeatherForm.jsx',
+      About: 'app/components/About.jsx',
       openWeatherMap: 'app/api/openWeatherMap.jsx'
     },
     extensions: ['', '.js', '.jsx']

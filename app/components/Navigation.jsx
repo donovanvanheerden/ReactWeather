@@ -6,9 +6,8 @@ var Nav = (props) => {
     <div>
       <h2>Nav Component</h2>
         <IndexLink to="/" activeClassName="active" style={navStyle} activeStyle={{fontWeight: 'bold'}}>Get Weather</IndexLink>
-        <Link to="/about" activeClassName="active" style={navStyle} activeStyle={{fontWeight: 'bold'}}>About</IndexLink>
-        <Link to="/examples" activeClassName="active" style={navStyle} activeStyle={{fontWeight: 'bold'}}>Examples</IndexLink>
-      </ul>
+        <Link to="/about" activeClassName="active" style={navStyle} activeStyle={{fontWeight: 'bold'}}>About</Link>
+        <Link to="/examples" activeClassName="active" style={navStyle} activeStyle={{fontWeight: 'bold'}}>Examples</Link>
     </div>
   );
 }
