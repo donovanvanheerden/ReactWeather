@@ -8,7 +8,10 @@ var ErrorModal = require('ErrorModal');
 var Weather = React.createClass({
   getInitialState: function () {
     return {
-      isLoading: false
+      isLoading: false,
+      errorMessage: undefined,
+      location: undefined,
+      temp: undefined
     }
   },
   handleSearch: function (location) {
@@ -25,6 +28,21 @@ var Weather = React.createClass({
     }, function (e) {
       that.setState({isLoading: false, errorMessage: e.message});
     });
+  },
+  componentDidMount: function() {
+    var location = this.props.location.query.location;
+    if (location && location.length > 0) {
+      this.handleSearch(location);
+      window.location.hash = "#/";
+    }
+
+  },
+  componentWillReceiveProps: function(newProps) {
+    var location = newProps.location.query.location;
+    if (location && location.length > 0) {
+      this.handleSearch(location);
+      window.location.hash = "#/";
+    }
   },
   render: function () {
     var {isLoading, temp, location, errorMessage} = this.state;
